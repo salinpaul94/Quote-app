@@ -1,9 +1,9 @@
 require "application_system_test_case"
 
 class QuotesTest < ApplicationSystemTestCase
-
+  
   setup do
-    @quote = quote(:first) # Reference to the first fixture quote
+    @quote = quotes(:first) # Reference to the first fixture quote
   end
 
   test "Creating a new quote" do
@@ -13,7 +13,7 @@ class QuotesTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Quotes"
 
     # When we click on the link with the text "New quote"
-    # We expect to land on a page with the title "New quote"
+    # we expect to land on a page with the title "New quote"
     click_on "New quote"
     assert_selector "h1", text: "New quote"
 
@@ -44,6 +44,9 @@ class QuotesTest < ApplicationSystemTestCase
 
     fill_in "Name", with: "Updated quote"
     click_on "Update quote"
+
+    assert_selector "h1", text: "Quotes"
+    assert_text "Updated quote"
   end
 
   test "Destroying a quote" do
@@ -51,6 +54,6 @@ class QuotesTest < ApplicationSystemTestCase
     assert_text @quote.name
 
     click_on "Delete", match: :first
-    assert_on_text @quote.name
+    assert_no_text @quote.name
   end
 end
