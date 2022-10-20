@@ -1,8 +1,8 @@
 @mixin media($query) {
     @if $query == tabletAndUp {
-        @media (min-width: 50rem) { @content; }
+      @media (min-width: 50rem) { @content; }
     }
-}
+  }
 
 .my-component {
     // The CSS for mobile
